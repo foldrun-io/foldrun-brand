@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <pattern id="grid" width="33" height="33" patternUnits="userSpaceOnUse">
+      <path d="M33 0H0v33" fill="none" stroke="#18181b" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="#09090b"/>
+  <rect width="1200" height="600" fill="url(#grid)"/>
+  <rect width="1200" height="600" fill="url(#glow)"/>
+  <g transform="translate(155.2 230.4) scale(5.0000)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+    <path d="M3 11h18"/>
+  </g>
+  <text x="315.2" y="324.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="152.0" font-weight="600" letter-spacing="-3.04" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
+  <text x="600" y="400.9" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="36.6" fill="#a1a1aa">Agents are just folders. Write them, run them, deploy them.</text>
+</svg>

@@ -1,0 +1,52 @@
+---
+// The words. One card per profile slot: the text, the platform's limit, and
+// how much of it is used — so the answer to "will this fit" is on the page.
+// A copy button per card, because the whole point is pasting these in.
+
+import Kit from "../../layouts/Kit.astro";
+import { BIOS, LINK } from "../../lib/bios.ts";
+
+const rows = BIOS.map((b) => ({ ...b, used: b.text.length, fits: b.text.length <= b.limit }));
+const over = rows.filter((r) => !r.fits);
+---
+
+<Kit
+  title="Description"
+  lead="A bio per profile, in the same voice: say what the thing is, keep the gate in it, never ask for business. Character counts are checked at build time."
+>
+  <div class="panel" style="margin-top:24px">
+    <p style="margin:0">
+      Link in every profile: <a class="mono" style="color:var(--green)" href={LINK}>{LINK}</a>
+      {over.length > 0 && <span class="over"> · {over.length} bio(s) over the limit — fix src/lib/bios.ts</span>}
+    </p>
+  </div>
+
+  {rows.map((b) => (
+    <div class="panel" style="margin-top:16px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <p style="margin:0"><strong>{b.platform}</strong> <span class="mono">{b.handle}</span> <span style="color:var(--dim)">· {b.slot}</span></p>
+        <span class={`mono ${b.fits ? "ok" : "over"}`}>{b.used}/{b.limit}</span>
+      </div>
+      <pre style="margin-top:12px" data-bio>{b.text}</pre>
+      <button class="dl" style="margin-top:12px;background:none;cursor:pointer" data-copy>Copy</button>
+    </div>
+  ))}
+</Kit>
+
+<script>
+  // Copy the sibling <pre>. No dependency, no clipboard library, and it
+  // degrades to a button that does nothing where the API is unavailable.
+  for (const btn of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+    btn.addEventListener("click", async () => {
+      const text = btn.parentElement?.querySelector("[data-bio]")?.textContent ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+        const was = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(() => (btn.textContent = was), 1200);
+      } catch {
+        /* a browser that refuses the clipboard: select it yourself */
+      }
+    });
+  }
+</script>

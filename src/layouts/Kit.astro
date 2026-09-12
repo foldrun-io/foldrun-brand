@@ -1,0 +1,97 @@
+---
+// One shell for the kit: the mark, three sections, and a noindex that is the
+// whole reason this can be a public repo. Styles are hand-written here rather
+// than pulled from a framework — this site is five pages and should still
+// build in five years.
+
+import { MARK_PATHS } from "../lib/mark.ts";
+
+interface Props {
+  title: string;
+  lead?: string;
+}
+const { title, lead } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const SECTIONS = [
+  { href: `${base}/logo/`, label: "Logo" },
+  { href: `${base}/description/`, label: "Description" },
+  { href: `${base}/thumbnails/`, label: "Thumbnails" },
+];
+const here = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The kit is linkable, not findable. Both directives, on every page. -->
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex" />
+    <title>{title} · foldrun brand</title>
+    <link rel="icon" href={`${base}/kit/avatar-256.svg`} type="image/svg+xml" />
+    <style is:global>
+      :root {
+        --ink: #09090b; --panel: #101013; --line: #26262b;
+        --paper: #fafafa; --muted: #a1a1aa; --dim: #71717a; --green: #10b981;
+        --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+        --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--ink); color: var(--paper); font: 15px/1.6 var(--sans); }
+      a { color: inherit; }
+      .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+      header { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgb(9 9 11 / 0.9); backdrop-filter: blur(8px); z-index: 5; }
+      .bar { display: flex; align-items: center; gap: 28px; padding: 16px 0; flex-wrap: wrap; }
+      .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; font-family: var(--mono); font-weight: 600; letter-spacing: -0.02em; }
+      nav { display: flex; gap: 20px; font-size: 14px; }
+      nav a { color: var(--muted); text-decoration: none; padding-bottom: 2px; }
+      nav a:hover { color: var(--paper); }
+      nav a[aria-current="page"] { color: var(--paper); border-bottom: 2px solid var(--green); }
+      h1 { font-size: 34px; letter-spacing: -0.02em; margin: 48px 0 8px; }
+      h2 { font-size: 18px; letter-spacing: -0.01em; margin: 44px 0 12px; }
+      .lead { color: var(--muted); margin: 0 0 8px; max-width: 62ch; }
+      .note { color: var(--dim); font-size: 13px; }
+      .panel { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px; }
+      .grid { display: grid; gap: 16px; }
+      @media (min-width: 720px) { .cols-2 { grid-template-columns: 1fr 1fr; } }
+      .mono { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+      .pill { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+      .ok { color: var(--green); }
+      .over { color: #f87171; }
+      .dl { display: inline-flex; gap: 6px; align-items: center; font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 7px; padding: 4px 9px; }
+      .dl:hover { border-color: #52525b; color: var(--paper); }
+      pre { white-space: pre-wrap; word-break: break-word; margin: 0; font: 13px/1.65 var(--sans); color: #e4e4e7; }
+      footer { border-top: 1px solid var(--line); margin-top: 72px; padding: 24px 0 56px; color: var(--dim); font-size: 13px; }
+      img.shot { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); background: #000; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap bar">
+        <a class="brand" href={`${base}/`}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            {MARK_PATHS.map((d) => <path d={d} />)}
+          </svg>
+          foldrun<span style="color:var(--green)">.</span>
+          <span style="color:var(--dim);font-weight:400;margin-left:6px">brand</span>
+        </a>
+        <nav>
+          {SECTIONS.map((s) => (
+            <a href={s.href} aria-current={here === s.href.replace(/\/$/, "") ? "page" : undefined}>{s.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </main>
+
+    <footer class="wrap">
+      Not indexed, not a public page — a working kit for filling in profiles. Sizes and words live in <span class="mono">src/lib/</span>; run <span class="mono">npm run covers</span> after changing one.
+    </footer>
+  </body>
+</html>

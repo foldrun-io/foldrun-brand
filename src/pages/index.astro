@@ -1,0 +1,58 @@
+---
+// The front door: what is in here, and where the three sections are. Kept to
+// one screen — a kit is something you pass through on the way to a form you
+// are filling in.
+
+import Kit from "../layouts/Kit.astro";
+import { COVERS, AVATARS, NO_COVER } from "../lib/assets.ts";
+import { BIOS } from "../lib/bios.ts";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const sections = [
+  { href: `${base}/logo/`, title: "Logo", what: "The mark, the avatars, the colours, and what not to do to it.", count: `${AVATARS.length + 1} files` },
+  { href: `${base}/description/`, title: "Description", what: "A bio per profile, with the platform's character limit checked.", count: `${BIOS.length} bios` },
+  { href: `${base}/thumbnails/`, title: "Thumbnails", what: "Cover images at every platform's size, drawn from one template.", count: `${COVERS.length} covers` },
+];
+---
+
+<Kit
+  title="The brand kit"
+  lead="Everything needed to fill in a profile: one mark, one sentence, and a cover image at the right size for each platform. Published so it can be linked and downloaded — and carrying a noindex so it is never found."
+>
+  <div class="grid cols-2" style="margin-top:28px">
+    {sections.map((s) => (
+      <a class="panel" href={s.href} style="text-decoration:none;display:block">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h2 style="margin:0;font-size:20px">{s.title}</h2>
+          <span class="pill">{s.count}</span>
+        </div>
+        <p class="lead" style="margin-top:8px;font-size:14px">{s.what}</p>
+      </a>
+    ))}
+    <div class="panel">
+      <h2 style="margin:0;font-size:20px">Letterhead</h2>
+      <p class="lead" style="margin-top:8px;font-size:14px">
+        A4, mark at the top, contact line at the foot. The address and phone are placeholders on purpose — printing one we do not have is worse than a blank.
+      </p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <a class="dl" href={`${base}/kit/letterhead.pdf`} download>PDF</a>
+        <a class="dl" href={`${base}/kit/letterhead.docx`} download>DOCX</a>
+      </div>
+      <p class="note" style="margin-top:10px">Edit CONTACT in <span class="mono">scripts/letterhead.mjs</span> and run <span class="mono">npm run letterhead</span> to fill them in.</p>
+    </div>
+
+    <div class="panel">
+      <h2 style="margin:0;font-size:20px">Later</h2>
+      <p class="lead" style="margin-top:8px;font-size:14px">
+        Room for the next ones: screenshots, slide templates, the deck, email signatures. A section is a page and a list — nothing here is a design tool.
+      </p>
+    </div>
+  </div>
+
+  <h2>Platforms with no cover slot</h2>
+  <div class="panel">
+    {NO_COVER.map((p) => (
+      <p style="margin:0 0 6px"><strong>{p.platform}</strong> <span class="mono">{p.handle}</span> — <span style="color:var(--muted)">{p.why}</span></p>
+    ))}
+  </div>
+</Kit>

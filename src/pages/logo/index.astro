@@ -1,0 +1,81 @@
+---
+// The mark: what it is, the files, the colours, and the four rules that keep
+// it the same thing everywhere. The avatars on this page are the generated
+// PNGs, so what you see is exactly what uploads.
+
+import Kit from "../../layouts/Kit.astro";
+import { AVATARS } from "../../lib/assets.ts";
+import { MARK_PATHS } from "../../lib/mark.ts";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const colours = [
+  { name: "Ink", hex: "#09090b", use: "The ground. Backgrounds, the avatar square." },
+  { name: "Green", hex: "#10b981", use: "One accent, used sparingly — the dot, a highlight." },
+  { name: "Paper", hex: "#fafafa", use: "The mark and text on ink." },
+  { name: "Muted", hex: "#a1a1aa", use: "Second-line text." },
+];
+const rules = [
+  "One mark everywhere — the app sidebar, the site, the docs, the favicons and every profile draw the same two paths.",
+  "Never restretch it: the stroke is 1.8 on a 24 grid and scales with the glyph.",
+  "Keep the padding. The avatar puts the mark at 60% of the square so a circular crop never clips it.",
+  "Ink or green ground only. No gradients inside the mark, no drop shadow, no outline around the square.",
+];
+---
+
+<Kit
+  title="Logo"
+  lead="A folder, because that is what an agent is here. Two paths, drawn at 1.8 stroke on a 24 grid — the same file the product draws in its sidebar."
+>
+  <h2>The mark</h2>
+  <div class="panel" style="display:flex;gap:40px;align-items:center;flex-wrap:wrap">
+    {[64, 40, 24, 20, 16].map((s) => (
+      <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        {MARK_PATHS.map((d) => <path d={d} />)}
+      </svg>
+    ))}
+    <span class="mono">64 · 40 · 24 · 20 · 16 px</span>
+  </div>
+
+  <h2>Avatars</h2>
+  <p class="note">Square PNGs, ready to upload. The green one is for anywhere a black square disappears into a dark interface.</p>
+  <div class="grid cols-2" style="margin-top:14px">
+    {[...AVATARS, { slug: "avatar-green-1000", w: 1000, note: "Inverted: ink mark on brand green." }].map((a) => (
+      <div class="panel" style="display:flex;gap:16px;align-items:center">
+        <img src={`${base}/kit/${a.slug}.png`} alt={a.slug} width="72" height="72" style="border-radius:10px;border:1px solid var(--line)" />
+        <div style="min-width:0">
+          <p class="mono" style="color:var(--paper);margin:0">{a.slug}.png <span style="color:var(--dim)">{a.w}×{a.w}</span></p>
+          <p class="note" style="margin:4px 0 8px">{a.note}</p>
+          <a class="dl" href={`${base}/kit/${a.slug}.png`} download>PNG</a>
+          <a class="dl" href={`${base}/kit/${a.slug}.svg`} download>SVG</a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2>Colours</h2>
+  <div class="grid cols-2" style="margin-top:14px">
+    {colours.map((c) => (
+      <div class="panel" style="display:flex;gap:14px;align-items:center">
+        <span style={`width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:${c.hex}`}></span>
+        <div>
+          <p style="margin:0"><strong>{c.name}</strong> <span class="mono">{c.hex}</span></p>
+          <p class="note" style="margin:2px 0 0">{c.use}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2>Four rules</h2>
+  <div class="panel">
+    <ol style="margin:0;padding-left:20px;color:var(--muted)">
+      {rules.map((r) => <li style="margin-bottom:8px">{r}</li>)}
+    </ol>
+  </div>
+
+  <h2>Honest note</h2>
+  <div class="panel">
+    <p style="margin:0;color:var(--muted)">
+      The shape is a standard closed folder — most icon sets ship one, so this is an icon standing in for a logo rather than a designed mark. The path data is ours, so there is no licence question. Six original alternatives drawn around the <em>fold</em> idea exist if we ever want to replace it.
+    </p>
+  </div>
+</Kit>

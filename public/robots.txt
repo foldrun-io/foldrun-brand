@@ -1,0 +1,6 @@
+# The brand kit is published so it can be linked and downloaded, not found.
+# Every page also carries <meta name="robots" content="noindex, nofollow">,
+# which is the part that actually keeps it out of an index — robots.txt only
+# asks a crawler not to fetch.
+User-agent: *
+Disallow: /
