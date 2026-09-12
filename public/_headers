@@ -1,0 +1,6 @@
+# Cloudflare Pages: the header version of the noindex that is already in every
+# page's <head>. A header covers the files a meta tag cannot — the PNGs, the
+# SVGs, the PDF and the .docx — so a stray link to a cover image cannot put the
+# kit in an index either.
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive, noimageindex

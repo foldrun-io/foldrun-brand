@@ -30,17 +30,23 @@ Everything is data:
 
 ```sh
 npm install
-npm run covers      # redraw every cover and avatar into public/kit
-npm run letterhead  # rebuild letterhead.pdf and letterhead.docx
+npm run assets      # redraw every cover, avatar and the letterhead
 npm run dev         # the site, at :4340
+npm run build       # just `astro build` — see below
 ```
 
-`covers` and `letterhead` shell out to the headless Chrome on your machine —
-that is why the generated files are **committed** rather than built in CI.
-When a platform changes its dimensions: edit the number, run the script,
-commit the new PNG.
+`covers` and `letterhead` shell out to the headless Chrome on your machine and
+import `.ts` directly, so they need a recent Node. **They are never part of
+`npm run build`** — a deploy builder has no browser and an older Node, and the
+first Cloudflare build failed exactly there. The generated files are committed
+instead. When a platform changes its dimensions: edit the number, run
+`npm run assets`, commit the new PNG.
 
 ## Publishing
 
-`.github/workflows/pages.yml` builds and deploys on every push to `main`.
-Enable it once under **Settings → Pages → Source: GitHub Actions**.
+Cloudflare Pages, from `main`: build command `npm run build`, output `dist`,
+no base path. `public/_headers` adds `X-Robots-Tag: noindex` across every file,
+which is the part a meta tag cannot do for a PNG or the PDF.
+
+For GitHub Pages instead, a project site lives under `/<repo>/`, so build it
+with `PUBLIC_BASE=/foldrun-brand npm run build`.
