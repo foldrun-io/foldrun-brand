@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1128" height="191" viewBox="0 0 1128 191">
   <rect width="1128" height="191" fill="#09090b"/>
-  <g transform="translate(79.0 69.5) scale(3.3413)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(79.0 76.1) scale(2.4885)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <g transform="translate(79.0 69.5) scale(3.3413)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="185.9" y="132.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="101.6" font-weight="600" letter-spacing="-2.03" fill="#fafafa">foldrun</text>
+  <g transform="translate(79.0 76.1) scale(2.4885)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
+  <text x="158.6" y="122.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="75.7" font-weight="600" letter-spacing="-1.51" fill="#fafafa">foldrun<tspan opacity="0.55">.io</tspan></text>
   
   <circle cx="733.0" cy="94.5" r="5.0" fill="#10b981"/>
   <text x="1049.0" y="102.4" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.3" xml:space="preserve"><tspan fill="#52525b">seo-desk/flows/</tspan><tspan fill="#10b981">rankings.md</tspan></text>

@@ -136,7 +136,7 @@ const html = `<!doctype html>
 
   <div class="body">
     <p class="salutation">Dear <span class="placeholder">[Name]</span>,</p>
-    <p class="placeholder">[Your letter goes here. Keep it to one page where you can — a second page is provided, and rarely needed.]</p>
+    <p class="placeholder">[Your letter goes here. Keep it to one page where you can; a second page is provided, and rarely needed.]</p>
     <div class="sign">
       <p>Kind regards,</p>
       <div class="rule"></div>

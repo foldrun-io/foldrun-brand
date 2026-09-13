@@ -1,14 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1500" height="750" viewBox="0 0 1500 750">
   <rect width="1500" height="750" fill="#09090b"/>
-  <g transform="translate(186.0 282.5) scale(2.9316)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(186.0 296.5) scale(2.1834)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <g transform="translate(186.0 282.5) scale(2.9316)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="279.8" y="337.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="89.1" font-weight="600" letter-spacing="-1.78" fill="#fafafa">foldrun</text>
+  <g transform="translate(186.0 296.5) scale(2.1834)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
+  <text x="255.9" y="337.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="66.4" font-weight="600" letter-spacing="-1.33" fill="#fafafa">foldrun<tspan opacity="0.55">.io</tspan></text>
   <text x="186.0" y="398.3" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="26.5" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
   <text x="186.0" y="438.0" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="26.5" fill="#a1a1aa">Write them, run them, deploy them.</text>
-  <text x="186.0" y="485.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="21.7" letter-spacing="0.53" fill="#10b981">foldrun.io</text>
   <g>
     <rect x="710.5" y="146.4" width="603.5" height="457.2" rx="22.0" fill="#0d0d10" stroke="#27272a" stroke-width="2.2"/>
     <line x1="710.5" y1="221.1" x2="1314.0" y2="221.1" stroke="#1c1c20"/>

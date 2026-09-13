@@ -45,7 +45,7 @@ export const PLATFORMS: Platform[] = [
   { name: "Reddit", url: "https://www.reddit.com/user/foldrun/", checked: "blocked", handle: "u/foldrun", status: "live", needs: [
     { slot: "Profile banner", size: "1920×384", file: "reddit-profile-banner" },
     { slot: "Avatar", size: "256×256", file: "avatar-256" },
-  ]},
+  ], note: "reddit.com/u/foldrun works too: /u/ is a shorthand Reddit redirects to /user/. The canonical form is the one stored here." },
   { name: "Subreddit", url: "https://www.reddit.com/r/foldrun/", checked: "blocked", handle: "r/foldrun", status: "live", needs: [
     { slot: "Community banner", size: "1920×384", file: "subreddit-banner" },
     { slot: "Community icon", size: "256×256", file: "avatar-256" },

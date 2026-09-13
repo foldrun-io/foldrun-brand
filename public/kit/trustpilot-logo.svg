@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
   <rect width="400" height="300" fill="#09090b"/>
-  <g transform="translate(172.9 77.8) scale(2.2556)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(181.1 99.5) scale(1.5789)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <g transform="translate(172.9 77.8) scale(2.2556)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="56.0" y="207.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="68.6" font-weight="600" letter-spacing="-1.37" fill="#fafafa">foldrun</text>
+  <g transform="translate(181.1 99.5) scale(1.5789)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
+  <text x="56.0" y="190.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="48.0" font-weight="600" letter-spacing="-0.96" fill="#fafafa">foldrun<tspan opacity="0.55">.io</tspan></text>
 </svg>

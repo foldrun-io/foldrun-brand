@@ -12,6 +12,14 @@ export const GREEN = "#10b981";
 export const PAPER = "#fafafa";
 export const MUTED = "#a1a1aa";
 
+/** The wordmark, and how many characters wide it is. It is the full domain:
+ *  a profile cover is read once, by someone who then has to type something
+ *  into a browser, so the name they read should be the thing they type. The
+ *  suffix is set a tone down so "foldrun" still carries the weight. */
+export const WORD = "foldrun";
+export const SUFFIX = ".io";
+export const WORD_CHARS = WORD.length + SUFFIX.length;
+
 /** The faces, and how wide one character of each is in em. Every fitting
  *  calculation in this kit measures text with these two numbers. */
 export const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -85,7 +93,7 @@ export function lockupSvg({
   margin?: number;
 }): string {
   const inner = { w: w * (1 - margin * 2), h: h * (1 - margin * 2) };
-  const wordUnits = 1.9 * MONO_EM * 7;
+  const wordUnits = 1.9 * MONO_EM * WORD_CHARS;
 
   const unit = stacked
     ? Math.min(inner.w / Math.max(1.5, wordUnits), inner.h / (1.5 + 0.6 + 1.9))
@@ -94,7 +102,7 @@ export function lockupSvg({
   const mark = unit * 1.5;
   const gap = unit * 0.5;
   const size = unit * 1.9;
-  const word = size * MONO_EM * 7;
+  const word = size * MONO_EM * WORD_CHARS;
 
   const blockW = stacked ? Math.max(mark, word) : mark + gap + word;
   const blockH = stacked ? mark + gap * 1.2 + size : mark;
@@ -112,6 +120,6 @@ export function lockupSvg({
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
   <g transform="${at}">${runLight(ground)}</g>
-  <text x="${wordX.toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${ink}">foldrun</text>
+  <text x="${wordX.toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${ink}">${WORD}<tspan opacity="0.55">${SUFFIX}</tspan></text>
 </svg>`;
 }

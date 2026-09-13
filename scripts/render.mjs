@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 import { COVERS, AVATARS, LOCKUPS } from "../src/lib/assets.ts";
 import {
   MARK_PATHS, INK, GREEN, PAPER, MUTED, MONO, MONO_EM, SANS, SANS_EM,
-  avatarSvg, lockupSvg, runLight,
+  WORD, SUFFIX, WORD_CHARS, avatarSvg, lockupSvg, runLight,
 } from "../src/lib/mark.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -50,8 +50,9 @@ const TREE_COLS = Math.max(...TREE.map((r) => (r.pre + r.name).length));
 const TITLE = "seo-desk";
 const SCHEDULE = "schedule · Wed 05:00";
 
-// 1.5 mark + 0.5 gap + seven mono characters of a 1.9-unit face.
-const LOCK_UNITS = 1.5 + 0.5 + 1.9 * MONO_EM * 7;
+// 1.5 mark + 0.5 gap + the wordmark: ten mono characters of a 1.9-unit face,
+// because the wordmark is the full domain.
+const LOCK_UNITS = 1.5 + 0.5 + 1.9 * MONO_EM * WORD_CHARS;
 
 /**
  * One cover.
@@ -82,7 +83,7 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
   <g transform="${at}">${runLight(INK)}</g>
-  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">foldrun</text>`;
+  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">${WORD}<tspan opacity="0.55">${SUFFIX}</tspan></text>`;
   };
 
   // ---------------------------------------------------------- letterbox
@@ -175,7 +176,6 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
   ${lockup(left, lockBase, unit)}
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 2.3).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${PAPER}" opacity="0.92">${l1}</text>
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 3.8).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${l2}</text>
-  <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 5.6).toFixed(1)}" font-family="${MONO}" font-size="${(subSize * 0.82).toFixed(1)}" letter-spacing="${(subSize * 0.02).toFixed(2)}" fill="${GREEN}">foldrun.io</text>
   ${panel}
 </svg>`;
 }
