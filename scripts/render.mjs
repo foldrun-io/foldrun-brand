@@ -61,9 +61,13 @@ const LOCK_UNITS = 1.5 + 0.5 + 1.9 * MONO_EM * 7;
  * Trustpilot's 150) get the centred lockup, because a tree at that height is
  * a smudge.
  */
-function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
-  const box = safe ?? { w: w * 0.86, h: h * 0.74 };
-  const cx = w / 2;
+function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
+  // The safe area is what a platform promises to show; the drawing sits inside
+  // it with a little air, because art flush to the edge of the safe box looks
+  // clipped even when it is not.
+  const raw = safe ?? { w: w * 0.86, h: h * 0.74 };
+  const box = safe ? { w: raw.w * 0.94, h: raw.h * 0.94 } : raw;
+  const cx = w / 2 + offsetX;
   const cy = h / 2 + offsetY;
   const ground = `<rect width="${w}" height="${h}" fill="${INK}"/>`;
   const roomy = box.h >= 280 && box.w / box.h <= 4.6;
@@ -110,7 +114,11 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
 
   // The panel: type is solved from the longest tree line, then rows and title
   // bar follow from it.
-  const type = Math.min(panelW / (TREE_COLS * MONO_EM + 2.8), box.h / 13);
+  // Two bounds, and the panel's height is the one that used to be missing: the
+  // panel is 1.7 + 8 rows + 0.7 tall, so type cannot exceed box.h / 16.2 or it
+  // grows a window taller than the space it is allowed to occupy — which is
+  // exactly how the YouTube banner ended up clipped top and bottom on mobile.
+  const type = Math.min(panelW / (TREE_COLS * MONO_EM + 2.8), box.h / 16.2);
   const rowH = type / 0.66;
   const pad = rowH * 0.9;
   const bar = rowH * 1.7;
