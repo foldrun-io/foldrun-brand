@@ -1,33 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
-  
   <rect width="1000" height="420" fill="#09090b"/>
-  
-  <g transform="translate(70.0 137.2) scale(2.5625)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(70.0 143.3) scale(2.2351)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <g transform="translate(70.0 137.2) scale(2.5625)">
-    <circle cx="20.6" cy="19.4" r="3" fill="#09090b"/>
-    <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/>
-  </g>
-  <text x="152.0" y="185.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="77.9" font-weight="600" letter-spacing="-1.56" fill="#fafafa">foldrun</text>
-  <text x="70.0" y="241.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="24.7" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
-  <text x="70.0" y="278.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="24.7" fill="#a1a1aa">Write them, run them, deploy them.</text>
+  <g transform="translate(70.0 143.3) scale(2.2351)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
+  <text x="141.5" y="185.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="67.9" font-weight="600" letter-spacing="-1.36" fill="#fafafa">foldrun</text>
+  <text x="70.0" y="231.6" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20.2" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
+  <text x="70.0" y="261.8" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="20.2" fill="#a1a1aa">Write them, run them, deploy them.</text>
   <g>
-    <rect x="474.2" y="61.3" width="455.8" height="297.5" rx="14.4" fill="#0d0d10" stroke="#27272a" stroke-width="1.4"/>
-    <line x1="474.2" y1="107.5" x2="930.0" y2="107.5" stroke="#1c1c20"/>
-    <circle cx="500.2" cy="84.4" r="4.2" fill="#2f2f36"/>
-    <circle cx="517.4" cy="84.4" r="4.2" fill="#2f2f36"/>
-    <circle cx="534.5" cy="84.4" r="4.2" fill="#2f2f36"/>
-    <text x="551.7" y="91.2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" fill="#a1a1aa">seo-desk</text>
-    <text x="904.0" y="91.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#10b981">schedule · Wed 05:00</text>
-    <text x="500.2" y="138.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46"></tspan><tspan fill="#e4e4e7">seo-desk/</tspan></text>
-    <text x="500.2" y="167.3" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">agents/</tspan></text>
-    <text x="500.2" y="196.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   ├── </tspan><tspan fill="#8a8a93">rival-watcher/agent.md</tspan></text>
-    <text x="500.2" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#8a8a93">reporter/agent.md</tspan></text>
-    <text x="500.2" y="253.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">flows/</tspan></text>
-    <rect x="481.4" y="262.0" width="441.4" height="29.5" rx="6.4" fill="#10b981" opacity=".10"/><text x="500.2" y="282.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#10b981">rankings.md</tspan></text>
-    <text x="500.2" y="311.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">└── </tspan><tspan fill="#e4e4e7">tools/</tspan></text>
-    <text x="500.2" y="340.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">    └── </tspan><tspan fill="#8a8a93">serp_check.py</tspan></text>
+    <rect x="469.9" y="35.7" width="460.1" height="348.6" rx="16.8" fill="#0d0d10" stroke="#27272a" stroke-width="1.7"/>
+    <line x1="469.9" y1="92.7" x2="930.0" y2="92.7" stroke="#1c1c20"/>
+    <circle cx="500.1" cy="64.2" r="4.9" fill="#2f2f36"/>
+    <circle cx="520.0" cy="64.2" r="4.9" fill="#2f2f36"/>
+    <circle cx="539.9" cy="64.2" r="4.9" fill="#2f2f36"/>
+    <text x="559.8" y="72.2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" fill="#a1a1aa">seo-desk</text>
+    
+    <text x="500.1" y="128.6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46"></tspan><tspan fill="#e4e4e7">seo-desk/</tspan></text>
+    <text x="500.1" y="162.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">agents/</tspan></text>
+    <text x="500.1" y="195.6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">│   ├── </tspan><tspan fill="#8a8a93">rival-watcher/agent.md</tspan></text>
+    <text x="500.1" y="229.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#8a8a93">reporter/agent.md</tspan></text>
+    <text x="500.1" y="262.6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">flows/</tspan></text>
+    <rect x="478.3" y="272.0" width="443.3" height="34.2" rx="7.4" fill="#10b981" opacity=".10"/><text x="500.1" y="296.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#10b981">rankings.md</tspan></text>
+    <text x="500.1" y="329.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">└── </tspan><tspan fill="#e4e4e7">tools/</tspan></text>
+    <text x="500.1" y="363.2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22.1" xml:space="preserve"><tspan fill="#3f3f46">    └── </tspan><tspan fill="#8a8a93">serp_check.py</tspan></text>
   </g>
 </svg>

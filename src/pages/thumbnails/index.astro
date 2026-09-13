@@ -4,6 +4,7 @@
 
 import Kit from "../../layouts/Kit.astro";
 import { COVERS, NO_COVER } from "../../lib/assets.ts";
+import { PLATFORMS } from "../../lib/platforms.ts";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
@@ -14,8 +15,30 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 >
   <div class="panel" style="margin-top:24px">
     <p style="margin:0;color:var(--muted)">
-      {COVERS.length} covers. Sizes live in <span class="mono">src/lib/assets.ts</span>; <span class="mono">npm run covers</span> redraws every file from them, so a platform changing its dimensions is a one-line edit.
+      {COVERS.length} covers. Sizes live in <span class="mono">src/lib/assets.ts</span>; <span class="mono">npm run assets</span> redraws every file from them, so a platform changing its dimensions is a one-line edit.
     </p>
+  </div>
+
+  <h2>Every profile, and what it needs</h2>
+  <p class="note">One row per platform we hold a handle on, with the file that fills each slot. Sizes are the platform's own published recommendation, checked September 2026.</p>
+  <div class="grid cols-2" style="margin-top:14px">
+    {PLATFORMS.map((p) => (
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+          <p style="margin:0"><strong>{p.name}</strong> <span class="mono">{p.handle}</span></p>
+          <span class="pill" style={p.status === "todo" ? "color:#fbbf24;border-color:#3f3113" : ""}>{p.status === "todo" ? "not opened" : "live"}</span>
+        </div>
+        <ul style="margin:12px 0 0;padding:0;list-style:none">
+          {p.needs.map((n) => (
+            <li style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px solid var(--rule-soft, #1b1b20);font-size:13px">
+              <span>{n.slot}<br /><span class="mono">{n.size}</span></span>
+              {n.file && <a class="dl" href={`${base}/kit/${n.file}.png`} download style="align-self:center;white-space:nowrap">{n.file}</a>}
+            </li>
+          ))}
+        </ul>
+        {p.note && <p class="note" style="margin-top:10px">{p.note}</p>}
+      </div>
+    ))}
   </div>
 
   {COVERS.map((c) => (

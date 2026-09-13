@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <rect width="1200" height="300" fill="#09090b"/>
+  <g transform="translate(168.0 85.1) scale(5.4108)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+    <path d="M3 11h18"/>
+  </g>
+  <g transform="translate(168.0 85.1) scale(5.4108)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
+  <text x="341.1" y="186.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="164.5" font-weight="600" letter-spacing="-3.29" fill="#fafafa">foldrun</text>
+</svg>

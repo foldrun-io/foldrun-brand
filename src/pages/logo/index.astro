@@ -1,47 +1,95 @@
 ---
-// The mark: what it is, the files, the colours, and the four rules that keep
-// it the same thing everywhere. The avatars on this page are the generated
-// PNGs, so what you see is exactly what uploads.
+// The logo, in full: the mark, the run light rule, the lockups, the avatars,
+// clear space, minimum sizes, the palette, the type, and the four ways to get
+// it wrong. Everything on this page is the generated file, so what you see is
+// what uploads.
 
 import Kit from "../../layouts/Kit.astro";
-import { AVATARS } from "../../lib/assets.ts";
+import { AVATARS, LOCKUPS } from "../../lib/assets.ts";
 import { MARK_PATHS } from "../../lib/mark.ts";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 const colours = [
-  { name: "Ink", hex: "#09090b", use: "The ground. Backgrounds, the avatar square." },
-  { name: "Green", hex: "#10b981", use: "One accent, used sparingly — the dot, a highlight." },
-  { name: "Paper", hex: "#fafafa", use: "The mark and text on ink." },
-  { name: "Muted", hex: "#a1a1aa", use: "Second-line text." },
+  { name: "Ink", hex: "#09090b", role: "The ground. Backgrounds, the avatar tile, text on light." },
+  { name: "Green", hex: "#10b981", role: "One accent. The run light, a running state, a single highlight." },
+  { name: "Paper", hex: "#fafafa", role: "The mark and text on ink." },
+  { name: "Muted", hex: "#a1a1aa", role: "Second-line text, captions, anything supporting." },
+  { name: "Line", hex: "#27272a", role: "Borders and rules on dark." },
+  { name: "Panel", hex: "#0d0d10", role: "A pane raised off the ground — the window in the covers." },
 ];
-const rules = [
-  "One mark everywhere — the app sidebar, the site, the docs, the favicons and every profile draw the same two paths.",
-  "Never restretch it: the stroke is 1.8 on a 24 grid and scales with the glyph.",
-  "Keep the padding. The avatar puts the mark at 60% of the square so a circular crop never clips it.",
-  "Ink or green ground only. No gradients inside the mark, no drop shadow, no outline around the square.",
+
+const misuse = [
+  { no: "Don't restretch it", why: "The stroke is 1.8 on a 24 grid and scales with the glyph. Squashing the box thins one axis and not the other." },
+  { no: "Don't move the run light", why: "It lives at 20.6,19.4 on the mark's grid, ringed in the surface behind it. Anywhere else it is a smudge on the outline." },
+  { no: "Don't put green on green", why: "The dot must contrast with its ground: green on ink, ink on green. This kit shipped an invisible one once." },
+  { no: "Don't add a second colour", why: "Ink, paper, one green. No gradients inside the mark, no shadow, no outline around the tile." },
+  { no: "Don't set the wordmark in another face", why: "It is the mono face at 600 weight, tight tracking, lowercase. Never title case, never spaced out." },
+  { no: "Don't add a full stop", why: "The dot is in the mark now. `foldrun.` says the same thing twice." },
 ];
+
+const grounds: Record<string, string> = { ink: "#09090b", paper: "#fafafa", green: "#10b981" };
 ---
 
 <Kit
   title="Logo"
-  lead="A folder, because that is what an agent is here. Two paths, drawn at 1.8 stroke on a 24 grid — the same file the product draws in its sidebar."
+  lead="A folder, because that is what an agent is here — with one green dot where a status light sits, because the folder is running. Two paths, 1.8 stroke on a 24 grid, the same file the product draws in its sidebar."
 >
   <h2>The mark</h2>
   <div class="panel" style="display:flex;gap:40px;align-items:center;flex-wrap:wrap">
     {[64, 40, 24, 20, 16].map((s) => (
-      <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        {MARK_PATHS.map((d) => <path d={d} />)}
+      <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          {MARK_PATHS.map((d) => <path d={d} />)}
+        </g>
+        <circle cx="20.6" cy="19.4" r="3" fill="var(--panel)" />
+        <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981" />
       </svg>
     ))}
     <span class="mono">64 · 40 · 24 · 20 · 16 px</span>
   </div>
 
+  <h2>The run light</h2>
+  <div class="panel">
+    <p style="margin:0 0 14px;color:var(--muted);max-width:64ch">
+      One green dot at <span class="mono">20.6, 19.4</span> on the mark's 24 grid, ringed in whatever surface sits behind it so it never touches the outline. It means the folder is doing something — which is the whole product — and it is the only detail small enough to survive a 16px tab.
+    </p>
+    <p style="margin:0;color:var(--muted);max-width:64ch">
+      <strong style="color:var(--paper)">The dot contrasts with its ground.</strong> Green on ink, ink on green. There is no third case.
+    </p>
+    <div style="display:flex;gap:14px;margin-top:18px;flex-wrap:wrap">
+      <img src={`${base}/kit/avatar-256.png`} alt="Mark on ink" width="72" height="72" style="border-radius:12px;border:1px solid var(--line)" />
+      <img src={`${base}/kit/avatar-green-1000.png`} alt="Mark on green" width="72" height="72" style="border-radius:12px;border:1px solid var(--line)" />
+    </div>
+  </div>
+
+  <h2>Lockups</h2>
+  <p class="note">Mark and wordmark, solved to fit rather than placed by eye. Use the horizontal one everywhere unless the space is square.</p>
+  <div class="grid" style="margin-top:14px">
+    {LOCKUPS.map((l) => (
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+          <p style="margin:0"><strong>{l.slot}</strong> {l.platform !== "Any" && <span class="mono">· {l.platform}</span>}</p>
+          <span class="mono">{l.w}×{l.h}</span>
+        </div>
+        <div style={`margin-top:12px;border-radius:10px;border:1px solid var(--line);overflow:hidden;background:${l.transparent ? "repeating-conic-gradient(#16161a 0% 25%, #101014 0% 50%) 50%/18px 18px" : grounds[l.ground ?? "ink"]}`}>
+          <img src={`${base}/kit/${l.slug}.png`} alt={l.slot} width={l.w} height={l.h} style="display:block;width:100%;height:auto" loading="lazy" />
+        </div>
+        {l.note && <p class="note" style="margin-top:10px">{l.note}</p>}
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <a class="dl" href={`${base}/kit/${l.slug}.png`} download>PNG</a>
+          <a class="dl" href={`${base}/kit/${l.slug}.svg`} download>SVG</a>
+        </div>
+      </div>
+    ))}
+  </div>
+
   <h2>Avatars</h2>
-  <p class="note">Square PNGs, ready to upload. The green one is for anywhere a black square disappears into a dark interface.</p>
+  <p class="note">Square, full-bleed, mark at 60% of the tile so a circular crop never clips it.</p>
   <div class="grid cols-2" style="margin-top:14px">
-    {[...AVATARS, { slug: "avatar-green-1000", w: 1000, note: "Inverted: ink mark on brand green." }].map((a) => (
+    {[...AVATARS, { slug: "avatar-green-1000", w: 1000, note: "Inverted: ink mark on brand green, ink run light." }].map((a) => (
       <div class="panel" style="display:flex;gap:16px;align-items:center">
-        <img src={`${base}/kit/${a.slug}.png`} alt={a.slug} width="72" height="72" style="border-radius:10px;border:1px solid var(--line)" />
+        <img src={`${base}/kit/${a.slug}.png`} alt={a.slug} width="72" height="72" style="border-radius:12px;border:1px solid var(--line)" loading="lazy" />
         <div style="min-width:0">
           <p class="mono" style="color:var(--paper);margin:0">{a.slug}.png <span style="color:var(--dim)">{a.w}×{a.w}</span></p>
           <p class="note" style="margin:4px 0 8px">{a.note}</p>
@@ -52,30 +100,67 @@ const rules = [
     ))}
   </div>
 
-  <h2>Colours</h2>
+  <h2>Clear space and minimum size</h2>
+  <div class="grid cols-2" style="margin-top:14px">
+    <div class="panel">
+      <p style="margin:0 0 14px;color:var(--muted)">Keep a margin of <strong style="color:var(--paper)">half the mark's height</strong> on every side of the lockup. Nothing sits inside it — no text, no rule, no edge of a photo.</p>
+      <svg viewBox="0 0 320 120" style="width:100%;height:auto">
+        <rect x="20" y="20" width="280" height="80" fill="none" stroke="#27272a" stroke-dasharray="4 4" />
+        <rect x="44" y="38" width="232" height="44" fill="none" stroke="#3f3f46" />
+        <g transform="translate(52 46) scale(1.2)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          {MARK_PATHS.map((d) => <path d={d} />)}
+        </g>
+        <circle cx="77" cy="69" r="3.6" fill="#0d0d10" /><circle cx="77" cy="69" r="2.3" fill="#10b981" />
+        <text x="92" y="70" font-family="ui-monospace, monospace" font-size="20" font-weight="600" fill="#fafafa">foldrun</text>
+        <text x="26" y="16" font-family="ui-monospace, monospace" font-size="9" fill="#71717a">clear space = ½ mark</text>
+      </svg>
+    </div>
+    <div class="panel">
+      <p style="margin:0 0 14px;color:var(--muted)">Minimums, below which the run light stops reading:</p>
+      <ul style="margin:0;padding-left:18px;color:var(--muted)">
+        <li><strong style="color:var(--paper)">Mark alone:</strong> 16px on screen, 6mm in print.</li>
+        <li><strong style="color:var(--paper)">Horizontal lockup:</strong> 96px wide on screen, 25mm in print.</li>
+        <li><strong style="color:var(--paper)">Avatar tile:</strong> 200px — every platform that asks for less scales it down itself.</li>
+      </ul>
+      <p class="note" style="margin-top:12px">Under those, use the mark without the dot rather than a dot nobody can see.</p>
+    </div>
+  </div>
+
+  <h2>Colour</h2>
   <div class="grid cols-2" style="margin-top:14px">
     {colours.map((c) => (
       <div class="panel" style="display:flex;gap:14px;align-items:center">
-        <span style={`width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:${c.hex}`}></span>
+        <span style={`width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:${c.hex}`}></span>
         <div>
           <p style="margin:0"><strong>{c.name}</strong> <span class="mono">{c.hex}</span></p>
-          <p class="note" style="margin:2px 0 0">{c.use}</p>
+          <p class="note" style="margin:2px 0 0">{c.role}</p>
         </div>
       </div>
     ))}
   </div>
 
-  <h2>Four rules</h2>
+  <h2>Type</h2>
   <div class="panel">
-    <ol style="margin:0;padding-left:20px;color:var(--muted)">
-      {rules.map((r) => <li style="margin-bottom:8px">{r}</li>)}
-    </ol>
+    <p style="margin:0 0 10px"><span class="mono" style="font-size:26px;color:var(--paper);font-weight:600;letter-spacing:-0.02em">foldrun</span></p>
+    <p style="margin:0;color:var(--muted);max-width:66ch">
+      The wordmark is the monospace face at 600 weight with −2% tracking, always lowercase, never title case and never letterspaced. Headlines are the system sans, tight; body copy the same face at normal tracking; anything that is a path, a command, a file name or a number set in mono. Three roles, two faces.
+    </p>
+  </div>
+
+  <h2>What not to do</h2>
+  <div class="grid cols-2" style="margin-top:14px">
+    {misuse.map((m) => (
+      <div class="panel">
+        <p style="margin:0"><strong>{m.no}</strong></p>
+        <p class="note" style="margin:6px 0 0">{m.why}</p>
+      </div>
+    ))}
   </div>
 
   <h2>Honest note</h2>
   <div class="panel">
     <p style="margin:0;color:var(--muted)">
-      The shape is a standard closed folder — most icon sets ship one, so this is an icon standing in for a logo rather than a designed mark. The path data is ours, so there is no licence question. Six original alternatives drawn around the <em>fold</em> idea exist if we ever want to replace it.
+      The shape is a standard closed folder — most icon sets ship one — so the run light is what makes it ours rather than the outline. The path data is ours, so there is no licence question. Six original alternatives drawn around the <em>fold</em> idea exist if we ever want to replace it.
     </p>
   </div>
 </Kit>
