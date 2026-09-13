@@ -83,7 +83,7 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
   <g transform="${at}">${runLight(INK)}</g>
-  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">${WORD}<tspan opacity="0.55">${SUFFIX}</tspan></text>`;
+  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">${WORD}${SUFFIX}</text>`;
   };
 
   // ---------------------------------------------------------- letterbox

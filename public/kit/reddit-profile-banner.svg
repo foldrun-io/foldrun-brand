@@ -5,7 +5,7 @@
     <path d="M3 11h18"/>
   </g>
   <g transform="translate(134.4 140.5) scale(3.7000)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="252.8" y="209.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="112.5" font-weight="600" letter-spacing="-2.25" fill="#fafafa">foldrun<tspan opacity="0.55">.io</tspan></text>
+  <text x="252.8" y="209.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="112.5" font-weight="600" letter-spacing="-2.25" fill="#fafafa">foldrun.io</text>
   <text x="134.4" y="271.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="29.6" fill="#a1a1aa">Agents are just folders. Write them, run them, deploy them.</text>
   <circle cx="1146.4" cy="190.0" r="10.1" fill="#10b981"/>
   <text x="1785.6" y="206.0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="39.0" xml:space="preserve"><tspan fill="#52525b">seo-desk/flows/</tspan><tspan fill="#10b981">rankings.md</tspan></text>

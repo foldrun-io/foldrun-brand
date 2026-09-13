@@ -15,7 +15,11 @@ export const MUTED = "#a1a1aa";
 /** The wordmark, and how many characters wide it is. It is the full domain:
  *  a profile cover is read once, by someone who then has to type something
  *  into a browser, so the name they read should be the thing they type. The
- *  suffix is set a tone down so "foldrun" still carries the weight. */
+ *  whole domain is set in one colour: a logo has to survive single-colour
+ *  reproduction — a stamp, an engraving, a black-and-white print — and
+ *  anything leaning on opacity turns to mud in those. Green is not used here
+ *  either: green means *running* in this system, and spending it on a domain
+ *  suffix would stop it being a signal. */
 export const WORD = "foldrun";
 export const SUFFIX = ".io";
 export const WORD_CHARS = WORD.length + SUFFIX.length;
@@ -120,6 +124,6 @@ export function lockupSvg({
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
   <g transform="${at}">${runLight(ground)}</g>
-  <text x="${wordX.toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${ink}">${WORD}<tspan opacity="0.55">${SUFFIX}</tspan></text>
+  <text x="${wordX.toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${ink}">${WORD}${SUFFIX}</text>
 </svg>`;
 }

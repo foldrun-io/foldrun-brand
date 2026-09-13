@@ -5,7 +5,7 @@
     <path d="M3 11h18"/>
   </g>
   <g transform="translate(75.3 56.6) scale(2.3716)"><circle cx="20.6" cy="19.4" r="3" fill="#09090b"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="151.1" y="101.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72.1" font-weight="600" letter-spacing="-1.44" fill="#fafafa">foldrun<tspan opacity="0.55">.io</tspan></text>
+  <text x="151.1" y="101.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="72.1" font-weight="600" letter-spacing="-1.44" fill="#fafafa">foldrun.io</text>
   
   <circle cx="698.5" cy="74.0" r="4.8" fill="#10b981"/>
   <text x="999.8" y="81.6" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18.4" xml:space="preserve"><tspan fill="#52525b">seo-desk/flows/</tspan><tspan fill="#10b981">rankings.md</tspan></text>

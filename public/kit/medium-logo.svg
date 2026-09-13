@@ -5,5 +5,5 @@
     <path d="M3 11h18"/>
   </g>
   <g transform="translate(84.0 11.8) scale(2.0149)"><circle cx="20.6" cy="19.4" r="3" fill="#fafafa"/><circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/></g>
-  <text x="148.5" y="49.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="61.3" font-weight="600" letter-spacing="-1.23" fill="#09090b">foldrun<tspan opacity="0.55">.io</tspan></text>
+  <text x="148.5" y="49.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="61.3" font-weight="600" letter-spacing="-1.23" fill="#09090b">foldrun.io</text>
 </svg>
