@@ -1,24 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320">
-  <defs>
-    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
-    </linearGradient>
-    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
+  
   <rect width="1280" height="320" fill="#09090b"/>
-  <g>
-    <path d="M1184 0H1280V96Z" fill="url(#under)"/>
-    <path d="M1184 0H1280V96Z" fill="url(#shade)" opacity=".4"/>
-    <path d="M1184 0 1280 96" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
-  </g>
+  
   <g transform="translate(393.8 117.1) scale(3.0833)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <circle cx="457.3" cy="165.2" r="9.3" fill="#09090b"/>
-  <circle cx="457.3" cy="165.2" r="5.8" fill="#10b981"/>
+  <g transform="translate(393.8 117.1) scale(3.0833)">
+    <circle cx="20.6" cy="19.4" r="3" fill="#09090b"/>
+    <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/>
+  </g>
   <text x="492.5" y="174.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="93.7" font-weight="600" letter-spacing="-1.87" fill="#fafafa">foldrun</text>
   <text x="640" y="245.3" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="33.6" fill="#a1a1aa">Agents are just folders. Write them, run them, deploy them.</text>
 </svg>

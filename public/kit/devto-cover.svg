@@ -1,52 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
-  <defs>
-    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
-    </linearGradient>
-    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
-    </linearGradient>
-  </defs>
+  
   <rect width="1000" height="420" fill="#09090b"/>
-  <g>
-    <path d="M874 0H1000V126Z" fill="url(#under)"/>
-    <path d="M874 0H1000V126Z" fill="url(#shade)" opacity=".4"/>
-    <path d="M874 0 1000 126" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
-  </g>
-  <g transform="translate(70.0 134.6) scale(2.6979)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  
+  <g transform="translate(70.0 137.2) scale(2.5625)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <circle cx="125.6" cy="176.7" r="8.1" fill="#09090b"/>
-  <circle cx="125.6" cy="176.7" r="5.1" fill="#10b981"/>
-  <text x="156.3" y="185.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="82.0" font-weight="600" letter-spacing="-1.64" fill="#fafafa">foldrun</text>
-  <text x="70.0" y="249.5" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="28.0" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
-  <text x="70.0" y="291.5" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="28.0" fill="#a1a1aa">Write them, run them, deploy them.</text>
+  <g transform="translate(70.0 137.2) scale(2.5625)">
+    <circle cx="20.6" cy="19.4" r="3" fill="#09090b"/>
+    <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/>
+  </g>
+  <text x="152.0" y="185.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="77.9" font-weight="600" letter-spacing="-1.56" fill="#fafafa">foldrun</text>
+  <text x="70.0" y="241.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="24.7" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
+  <text x="70.0" y="278.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="24.7" fill="#a1a1aa">Write them, run them, deploy them.</text>
   <g>
-    <rect x="530.1" y="113.7" width="399.9" height="192.7" rx="10.6" fill="#0d0d10" stroke="#27272a" stroke-width="1.0"/>
-    <g>
-      
-      <circle cx="550.3" cy="137.7" r="4.8" fill="#3f3f46"/>
-      <text x="562.9" y="143.6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">research</text>
-      
-    </g>
-    <g>
-      <line x1="550.3" y1="161.8" x2="909.8" y2="161.8" stroke="#1c1c20" stroke-width="1"/>
-      <circle cx="550.3" cy="185.9" r="4.8" fill="#3f3f46"/>
-      <text x="562.9" y="191.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">draft</text>
-      
-    </g>
-    <g>
-      <line x1="550.3" y1="210.0" x2="909.8" y2="210.0" stroke="#1c1c20" stroke-width="1"/>
-      <circle cx="550.3" cy="234.1" r="4.8" fill="#10b981"/>
-      <text x="562.9" y="240.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#10b981">approve</text>
-      <text x="909.8" y="239.3" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.1" fill="#10b981" opacity="0.8">waits for you</text>
-    </g>
-    <g>
-      <line x1="550.3" y1="258.2" x2="909.8" y2="258.2" stroke="#1c1c20" stroke-width="1"/>
-      <circle cx="550.3" cy="282.3" r="4.8" fill="#3f3f46"/>
-      <text x="562.9" y="288.2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">publish</text>
-      
-    </g>
+    <rect x="474.2" y="61.3" width="455.8" height="297.5" rx="14.4" fill="#0d0d10" stroke="#27272a" stroke-width="1.4"/>
+    <line x1="474.2" y1="107.5" x2="930.0" y2="107.5" stroke="#1c1c20"/>
+    <circle cx="500.2" cy="84.4" r="4.2" fill="#2f2f36"/>
+    <circle cx="517.4" cy="84.4" r="4.2" fill="#2f2f36"/>
+    <circle cx="534.5" cy="84.4" r="4.2" fill="#2f2f36"/>
+    <text x="551.7" y="91.2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" fill="#a1a1aa">seo-desk</text>
+    <text x="904.0" y="91.2" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#10b981">schedule · Wed 05:00</text>
+    <text x="500.2" y="138.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46"></tspan><tspan fill="#e4e4e7">seo-desk/</tspan></text>
+    <text x="500.2" y="167.3" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">agents/</tspan></text>
+    <text x="500.2" y="196.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   ├── </tspan><tspan fill="#8a8a93">rival-watcher/agent.md</tspan></text>
+    <text x="500.2" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#8a8a93">reporter/agent.md</tspan></text>
+    <text x="500.2" y="253.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">├── </tspan><tspan fill="#e4e4e7">flows/</tspan></text>
+    <rect x="481.4" y="262.0" width="441.4" height="29.5" rx="6.4" fill="#10b981" opacity=".10"/><text x="500.2" y="282.8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">│   └── </tspan><tspan fill="#10b981">rankings.md</tspan></text>
+    <text x="500.2" y="311.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">└── </tspan><tspan fill="#e4e4e7">tools/</tspan></text>
+    <text x="500.2" y="340.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19.1" xml:space="preserve"><tspan fill="#3f3f46">    └── </tspan><tspan fill="#8a8a93">serp_check.py</tspan></text>
   </g>
 </svg>

@@ -22,16 +22,18 @@ export function avatarSvg(size: number, ground = INK, ink = PAPER): string {
   const glyph = size * 0.6;
   const scale = glyph / 24;
   const offset = (size - glyph) / 2;
-  // The run light sits where a status light would: a green dot with a ring of
-  // the ground, so it never touches the folder's outline at any size.
-  const dx = offset + glyph * 0.858;
-  const dy = offset + glyph * 0.812;
+  // The run light is drawn on the mark's own 24 grid, inside the same
+  // transform as the paths, so every rendering of the logo — favicon, header,
+  // cover, avatar — puts it in exactly the same place.
+  const at = `translate(${offset} ${offset}) scale(${scale})`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
   <rect width="${size}" height="${size}" fill="${ground}"/>
-  <g transform="translate(${offset} ${offset}) scale(${scale})" fill="none" stroke="${ink}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="${at}" fill="none" stroke="${ink}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
-  <circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(glyph * 0.125).toFixed(1)}" fill="${ground}"/>
-  <circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${(glyph * 0.079).toFixed(1)}" fill="#10b981"/>
+  <g transform="${at}">
+    <circle cx="20.6" cy="19.4" r="3" fill="${ground}"/>
+    <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981"/>
+  </g>
 </svg>`;
 }

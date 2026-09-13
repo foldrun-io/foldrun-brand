@@ -57,35 +57,27 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
 
   const ground = `<rect width="${w}" height="${h}" fill="${INK}"/>`;
 
-  // The ground is the sheet itself, folded: one corner turns down and the
-  // underside is the brand green. It performs the name instead of decorating
-  // around it, it is one shape, and no pattern library ships it.
-  const fold = Math.round(Math.min(w, h) * 0.30);
-  const defs = `<defs>
-    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
-    </linearGradient>
-    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
-    </linearGradient>
-  </defs>`;
-
-  const corner = `<g>
-    <path d="M${w - fold} 0H${w}V${fold}Z" fill="url(#under)"/>
-    <path d="M${w - fold} 0H${w}V${fold}Z" fill="url(#shade)" opacity=".4"/>
-    <path d="M${w - fold} 0 ${w} ${fold}" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
-  </g>`;
+  // No ground and no ornament: flat ink, the way the site ended up. Anything
+  // laid behind this either fought the lockup or read as dirt.
+  const defs = "";
+  const corner = "";
 
   /** The lockup: mark + wordmark, drawn from a baseline and a left edge. */
   const lockup = (left, baseline, unit) => {
     const mark = unit * 1.5;
     const gap = unit * 0.5;
     const size = unit * 1.9;
-    return `<g transform="translate(${left.toFixed(1)} ${(baseline - mark * 0.78).toFixed(1)}) scale(${(mark / 24).toFixed(4)})" fill="none" stroke="${PAPER}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    // One transform, the mark's own 24 grid, so the run light lands exactly
+    // where the favicon puts it. Computing the dot in pixels — which this did
+    // — drifted it inside the outline and swallowed its ring.
+    const at = `translate(${left.toFixed(1)} ${(baseline - mark * 0.78).toFixed(1)}) scale(${(mark / 24).toFixed(4)})`;
+    return `<g transform="${at}" fill="none" stroke="${PAPER}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
-  <circle cx="${(left + mark * 0.858).toFixed(1)}" cy="${(baseline - mark * 0.13).toFixed(1)}" r="${(mark * 0.125).toFixed(1)}" fill="${INK}"/>
-  <circle cx="${(left + mark * 0.858).toFixed(1)}" cy="${(baseline - mark * 0.13).toFixed(1)}" r="${(mark * 0.079).toFixed(1)}" fill="${GREEN}"/>
+  <g transform="${at}">
+    <circle cx="20.6" cy="19.4" r="3" fill="${INK}"/>
+    <circle cx="20.6" cy="19.4" r="1.9" fill="${GREEN}"/>
+  </g>
   <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">foldrun</text>`;
   };
   const lockWidth = (unit) => unit * 1.5 + unit * 0.5 + unit * 1.9 * 0.6 * 7;
@@ -104,12 +96,17 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
 </svg>`;
   }
 
-  // ---------------------------------------------------------- the run strip
+  // ------------------------------------------------------- the workspace
+  //
+  // The picture is the folder itself: a window, a schedule in its title bar,
+  // and the tree inside — agents, a flow, a tool. It is the product's own
+  // claim rendered literally, and it is the thing on the site that people
+  // stop on. The highlighted row is the flow that is running.
   const left = cx - box.w / 2;
   const top = cy - box.h / 2;
-  const colGap = box.w * 0.07;
-  const textW = box.w * 0.50 - colGap / 2;
-  const panelW = box.w * 0.50 - colGap / 2;
+  const colGap = box.w * 0.06;
+  const textW = box.w * 0.44 - colGap / 2;
+  const panelW = box.w * 0.56 - colGap / 2;
   const panelX = left + box.w - panelW;
 
   const unit = Math.min(box.h / 7.2, textW / 8.6);
@@ -120,29 +117,40 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
   const l1 = "Agents are just folders.";
   const l2 = "Write them, run them, deploy them.";
 
-  const rows = [
-    { name: "research", gate: false },
-    { name: "draft", gate: false },
-    { name: "approve", gate: true },
-    { name: "publish", gate: false },
+  // Drawn the way `tree` draws it, with the box-drawing branches, because that
+  // is what makes a person read "file system" before they read any word of it.
+  const tree = [
+    { pre: "", name: "seo-desk/", dir: true },
+    { pre: "├── ", name: "agents/", dir: true },
+    { pre: "│   ├── ", name: "rival-watcher/agent.md" },
+    { pre: "│   └── ", name: "reporter/agent.md" },
+    { pre: "├── ", name: "flows/", dir: true },
+    { pre: "│   └── ", name: "rankings.md", on: true },
+    { pre: "└── ", name: "tools/", dir: true },
+    { pre: "    └── ", name: "serp_check.py" },
   ];
-  const rowH = (box.h * 0.62) / rows.length;
-  const panelTop = cy - (rowH * rows.length) / 2;
-  const pad = rowH * 0.42;
-  const label = rowH * 0.34;
+
+  const rowH = (box.h * 0.92) / (tree.length + 1.9);
+  const bar = rowH * 1.6;
+  const panelH = bar + rowH * tree.length + rowH * 0.7;
+  const panelTop = cy - panelH / 2;
+  const pad = rowH * 0.9;
+  const type = rowH * 0.66;
 
   const panel = `<g>
-    <rect x="${panelX.toFixed(1)}" y="${panelTop.toFixed(1)}" width="${panelW.toFixed(1)}" height="${(rowH * rows.length).toFixed(1)}" rx="${(rowH * 0.22).toFixed(1)}" fill="#0d0d10" stroke="#27272a" stroke-width="${Math.max(1, rowH * 0.012).toFixed(1)}"/>
-    ${rows.map((r, i) => {
-      const y = panelTop + rowH * i;
-      const mid = y + rowH / 2;
-      const dot = rowH * 0.1;
-      return `<g>
-      ${i > 0 ? `<line x1="${(panelX + pad).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(panelX + panelW - pad).toFixed(1)}" y2="${y.toFixed(1)}" stroke="#1c1c20" stroke-width="1"/>` : ""}
-      <circle cx="${(panelX + pad).toFixed(1)}" cy="${mid.toFixed(1)}" r="${dot.toFixed(1)}" fill="${r.gate ? GREEN : "#3f3f46"}"/>
-      <text x="${(panelX + pad + dot * 2.6).toFixed(1)}" y="${(mid + label * 0.36).toFixed(1)}" font-family="${MONO}" font-size="${label.toFixed(1)}" fill="${r.gate ? GREEN : "#d4d4d8"}">${r.name}</text>
-      ${r.gate ? `<text x="${(panelX + panelW - pad).toFixed(1)}" y="${(mid + label * 0.32).toFixed(1)}" text-anchor="end" font-family="${MONO}" font-size="${(label * 0.74).toFixed(1)}" fill="${GREEN}" opacity="0.8">waits for you</text>` : ""}
-    </g>`;
+    <rect x="${panelX.toFixed(1)}" y="${panelTop.toFixed(1)}" width="${panelW.toFixed(1)}" height="${panelH.toFixed(1)}" rx="${(rowH * 0.5).toFixed(1)}" fill="#0d0d10" stroke="#27272a" stroke-width="${Math.max(1, rowH * 0.05).toFixed(1)}"/>
+    <line x1="${panelX.toFixed(1)}" y1="${(panelTop + bar).toFixed(1)}" x2="${(panelX + panelW).toFixed(1)}" y2="${(panelTop + bar).toFixed(1)}" stroke="#1c1c20"/>
+    ${[0, 1, 2].map((i) => `<circle cx="${(panelX + pad + i * type * 0.9).toFixed(1)}" cy="${(panelTop + bar / 2).toFixed(1)}" r="${(type * 0.22).toFixed(1)}" fill="#2f2f36"/>`).join("\n    ")}
+    <text x="${(panelX + pad + type * 2.7).toFixed(1)}" y="${(panelTop + bar / 2 + type * 0.36).toFixed(1)}" font-family="${MONO}" font-size="${type.toFixed(1)}" fill="#a1a1aa">seo-desk</text>
+    <text x="${(panelX + panelW - pad).toFixed(1)}" y="${(panelTop + bar / 2 + type * 0.36).toFixed(1)}" text-anchor="end" font-family="${MONO}" font-size="${(type * 0.86).toFixed(1)}" fill="${GREEN}">schedule · Wed 05:00</text>
+    ${tree.map((row, i) => {
+      const y = panelTop + bar + rowH * 0.35 + rowH * i;
+      const baseline = y + rowH * 0.72;
+      const hl = row.on
+        ? `<rect x="${(panelX + rowH * 0.25).toFixed(1)}" y="${y.toFixed(1)}" width="${(panelW - rowH * 0.5).toFixed(1)}" height="${(rowH * 1.02).toFixed(1)}" rx="${(rowH * 0.22).toFixed(1)}" fill="${GREEN}" opacity=".10"/>`
+        : "";
+      const colour = row.on ? GREEN : row.dir ? "#e4e4e7" : "#8a8a93";
+      return `${hl}<text x="${(panelX + pad).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${type.toFixed(1)}" xml:space="preserve"><tspan fill="#3f3f46">${row.pre}</tspan><tspan fill="${colour}">${row.name}</tspan></text>`;
     }).join("\n    ")}
   </g>`;
 
