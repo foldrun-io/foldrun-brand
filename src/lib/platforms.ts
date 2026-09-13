@@ -76,10 +76,10 @@ export const PLATFORMS: Platform[] = [
     { slot: "Space / image post", size: "1200×628", file: "quora-cover" },
     { slot: "Logo", size: "500×500, shown as a circle", file: "avatar-500" },
   ]},
-  { name: "G2", url: "https://www.g2.com/products/foldrun/reviews", checked: "missing", handle: "foldrun", status: "todo", needs: [
+  { name: "G2", url: "https://www.g2.com/users/foldrun", checked: "blocked", handle: "foldrun", status: "live", needs: [
     { slot: "Profile banner", size: "2500×476 (displays 1260×240)", file: "g2-banner" },
     { slot: "Product logo", size: "400px or larger", file: "avatar-400" },
-  ], note: "Profile not claimed yet — reviews have to exist before the badge means anything." },
+  ], note: "This is the user account. The product profile is a separate page, g2.com/products/<slug>/reviews, whose slug G2 assigns when the vendor profile is created; the banner and logo above belong to that one, and it wants reviews before the badge means anything." },
   { name: "Trustpilot", url: "https://www.trustpilot.com/review/foldrun.io", checked: "blocked", handle: "foldrun.io", status: "live", needs: [
     { slot: "Header image", size: "1075×150, under 1MB", file: "trustpilot-header" },
     { slot: "Business logo", size: "400×300, under 1MB", file: "trustpilot-logo" },
