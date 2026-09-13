@@ -43,11 +43,13 @@ const footerLine = [CONTACT.address, CONTACT.phone, CONTACT.email, CONTACT.site]
 // ---------------------------------------------------------------- the page
 
 const lockup = (h) => `
-<svg width="${h * 6.1}" height="${h}" viewBox="0 0 ${24 * 6.1} 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="${h * 5.5}" height="${h}" viewBox="0 0 ${24 * 5.5} 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g stroke="${INK}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
-  <text x="29" y="18.4" font-family="ui-monospace, Menlo, monospace" font-size="15.5" font-weight="600" letter-spacing="-0.4" fill="${INK}">foldrun<tspan fill="${GREEN}">.</tspan></text>
+  <circle cx="20.6" cy="19.4" r="3" fill="#ffffff"/>
+  <circle cx="20.6" cy="19.4" r="1.9" fill="${GREEN}"/>
+  <text x="29" y="18.4" font-family="ui-monospace, Menlo, monospace" font-size="15.5" font-weight="600" letter-spacing="-0.4" fill="${INK}">foldrun</text>
 </svg>`;
 
 const html = `<!doctype html>
@@ -180,10 +182,10 @@ console.log("  letterhead.pdf           A4");
 const lockSvg = path.join(tmp, "lockup.svg");
 fs.writeFileSync(lockSvg, lockup(24).trim());
 const shot = path.join(tmp, "shot.html");
-fs.writeFileSync(shot, `<style>html,body{margin:0;padding:0;overflow:hidden;background:#fff}img{display:block;width:1098px;height:180px}</style><img src="lockup.svg">`);
+fs.writeFileSync(shot, `<style>html,body{margin:0;padding:0;overflow:hidden;background:#fff}img{display:block;width:990px;height:180px}</style><img src="lockup.svg">`);
 execFileSync(CHROME, [
   "--headless", "--disable-gpu", "--hide-scrollbars", "--virtual-time-budget=2000",
-  "--window-size=1098,180", `--screenshot=${path.join(tmp, "lockup.png")}`, `file://${shot}`,
+  "--window-size=990,180", `--screenshot=${path.join(tmp, "lockup.png")}`, `file://${shot}`,
 ], { stdio: "ignore" });
 
 // ---------------------------------------------------------------- the .docx
@@ -194,7 +196,7 @@ execFileSync(CHROME, [
 
 const x = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const EMU = 9525; // 1 px at 96dpi
-const logoW = Math.round(1098 * EMU * 0.30);
+const logoW = Math.round(990 * EMU * 0.30);
 const logoH = Math.round(180 * EMU * 0.30);
 
 const files = {

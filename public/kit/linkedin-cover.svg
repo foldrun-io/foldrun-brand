@@ -1,20 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1128" height="191" viewBox="0 0 1128 191">
   <defs>
-    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M24 0H0v24" fill="none" stroke="#18181b" stroke-width="1"/>
-    </pattern>
-    <radialGradient id="glow" cx="50%" cy="0%" r="75%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
   </defs>
   <rect width="1128" height="191" fill="#09090b"/>
-  <rect width="1128" height="191" fill="url(#grid)"/>
-  <rect width="1128" height="191" fill="url(#glow)"/>
-  <g transform="translate(332.9 75.3) scale(2.5982)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g>
+    <path d="M1071 0H1128V57Z" fill="url(#under)"/>
+    <path d="M1071 0H1128V57Z" fill="url(#shade)" opacity=".4"/>
+    <path d="M1071 0 1128 57" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
+  </g>
+  <g transform="translate(356.6 75.3) scale(2.5982)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <text x="416.0" y="123.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="79.0" font-weight="600" letter-spacing="-1.58" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
+  <circle cx="410.1" cy="115.8" r="7.8" fill="#09090b"/>
+  <circle cx="410.1" cy="115.8" r="4.9" fill="#10b981"/>
+  <text x="439.7" y="123.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="79.0" font-weight="600" letter-spacing="-1.58" fill="#fafafa">foldrun</text>
   
 </svg>

@@ -28,7 +28,7 @@ const here = Astro.url.pathname.replace(/\/$/, "");
     <!-- The kit is linkable, not findable. Both directives, on every page. -->
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex" />
     <title>{title} · foldrun brand</title>
-    <link rel="icon" href={`${base}/kit/avatar-256.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
     <style is:global>
       :root {
         --ink: #09090b; --panel: #101013; --line: #26262b;
@@ -72,8 +72,10 @@ const here = Astro.url.pathname.replace(/\/$/, "");
         <a class="brand" href={`${base}/`}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             {MARK_PATHS.map((d) => <path d={d} />)}
+            <circle cx="20.6" cy="19.4" r="3" fill="var(--ink)" stroke="none" />
+            <circle cx="20.6" cy="19.4" r="1.9" fill="#10b981" stroke="none" />
           </svg>
-          foldrun<span style="color:var(--green)">.</span>
+          foldrun
           <span style="color:var(--dim);font-weight:400;margin-left:6px">brand</span>
         </a>
         <nav>

@@ -55,20 +55,26 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
   // because anything else at that height is a smudge.
   const roomy = box.h >= 280 && box.w / box.h <= 4.6;
 
-  const grid = Math.max(24, Math.round(Math.min(w, h) / 18));
-  const ground = `<rect width="${w}" height="${h}" fill="${INK}"/>
-  <rect width="${w}" height="${h}" fill="url(#grid)"/>
-  <rect width="${w}" height="${h}" fill="url(#glow)"/>`;
+  const ground = `<rect width="${w}" height="${h}" fill="${INK}"/>`;
 
+  // The ground is the sheet itself, folded: one corner turns down and the
+  // underside is the brand green. It performs the name instead of decorating
+  // around it, it is one shape, and no pattern library ships it.
+  const fold = Math.round(Math.min(w, h) * 0.30);
   const defs = `<defs>
-    <pattern id="grid" width="${grid}" height="${grid}" patternUnits="userSpaceOnUse">
-      <path d="M${grid} 0H0v${grid}" fill="none" stroke="#18181b" stroke-width="1"/>
-    </pattern>
-    <radialGradient id="glow" cx="${roomy ? "24%" : "50%"}" cy="0%" r="75%">
-      <stop offset="0%" stop-color="${GREEN}" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="${GREEN}" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
   </defs>`;
+
+  const corner = `<g>
+    <path d="M${w - fold} 0H${w}V${fold}Z" fill="url(#under)"/>
+    <path d="M${w - fold} 0H${w}V${fold}Z" fill="url(#shade)" opacity=".4"/>
+    <path d="M${w - fold} 0 ${w} ${fold}" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
+  </g>`;
 
   /** The lockup: mark + wordmark, drawn from a baseline and a left edge. */
   const lockup = (left, baseline, unit) => {
@@ -78,9 +84,11 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
     return `<g transform="translate(${left.toFixed(1)} ${(baseline - mark * 0.78).toFixed(1)}) scale(${(mark / 24).toFixed(4)})" fill="none" stroke="${PAPER}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     ${MARK_PATHS.map((d) => `<path d="${d}"/>`).join("\n    ")}
   </g>
-  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">foldrun<tspan fill="${GREEN}">.</tspan></text>`;
+  <circle cx="${(left + mark * 0.858).toFixed(1)}" cy="${(baseline - mark * 0.13).toFixed(1)}" r="${(mark * 0.125).toFixed(1)}" fill="${INK}"/>
+  <circle cx="${(left + mark * 0.858).toFixed(1)}" cy="${(baseline - mark * 0.13).toFixed(1)}" r="${(mark * 0.079).toFixed(1)}" fill="${GREEN}"/>
+  <text x="${(left + mark + gap).toFixed(1)}" y="${baseline.toFixed(1)}" font-family="${MONO}" font-size="${size.toFixed(1)}" font-weight="600" letter-spacing="${(-size * 0.02).toFixed(2)}" fill="${PAPER}">foldrun</text>`;
   };
-  const lockWidth = (unit) => unit * 1.5 + unit * 0.5 + unit * 1.9 * 0.6 * 8;
+  const lockWidth = (unit) => unit * 1.5 + unit * 0.5 + unit * 1.9 * 0.6 * 7;
 
   // ---------------------------------------------------------- letterbox
   if (!roomy) {
@@ -90,6 +98,7 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   ${defs}
   ${ground}
+  ${corner}
   ${lockup(cx - lockWidth(unit) / 2, baseline, unit)}
   ${sub ? `<text x="${cx}" y="${(baseline + subSize * 2.1).toFixed(1)}" text-anchor="middle" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${sub}</text>` : ""}
 </svg>`;
@@ -140,6 +149,7 @@ function coverSvg({ w, h, safe, sub, offsetY = 0 }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   ${defs}
   ${ground}
+  ${corner}
   ${lockup(left, lockBase, unit)}
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 2.3).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${PAPER}" opacity="0.92">${l1}</text>
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 3.8).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${l2}</text>

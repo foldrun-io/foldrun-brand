@@ -1,21 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2160" height="1080" viewBox="0 0 2160 1080">
   <defs>
-    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M60 0H0v60" fill="none" stroke="#18181b" stroke-width="1"/>
-    </pattern>
-    <radialGradient id="glow" cx="24%" cy="0%" r="75%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="under" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#046c50"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
   </defs>
   <rect width="2160" height="1080" fill="#09090b"/>
-  <rect width="2160" height="1080" fill="url(#grid)"/>
-  <rect width="2160" height="1080" fill="url(#glow)"/>
+  <g>
+    <path d="M1836 0H2160V324Z" fill="url(#under)"/>
+    <path d="M1836 0H2160V324Z" fill="url(#shade)" opacity=".4"/>
+    <path d="M1836 0 2160 324" stroke="#04352a" stroke-width="1.5" opacity=".8"/>
+  </g>
   <g transform="translate(280.0 382.8) scale(5.4070)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <text x="453.0" y="484.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="164.4" font-weight="600" letter-spacing="-3.29" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
+  <circle cx="391.3" cy="467.1" r="16.2" fill="#09090b"/>
+  <circle cx="391.3" cy="467.1" r="10.3" fill="#10b981"/>
+  <text x="453.0" y="484.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="164.4" font-weight="600" letter-spacing="-3.29" fill="#fafafa">foldrun</text>
   <text x="280.0" y="603.8" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="52.1" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
   <text x="280.0" y="681.9" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="52.1" fill="#a1a1aa">Write them, run them, deploy them.</text>
   <g>
