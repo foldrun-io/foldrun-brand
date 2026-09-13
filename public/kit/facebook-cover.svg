@@ -8,6 +8,7 @@
   <text x="498.7" y="404.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="60.9" font-weight="600" letter-spacing="-1.22" fill="#fafafa">foldrun</text>
   <text x="434.6" y="446.2" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="18.1" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
   <text x="434.6" y="473.3" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="18.1" fill="#a1a1aa">Write them, run them, deploy them.</text>
+  <text x="434.6" y="505.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14.8" letter-spacing="0.36" fill="#10b981">foldrun.io</text>
   <g>
     <rect x="793.0" y="285.4" width="412.4" height="285.3" rx="13.7" fill="#0d0d10" stroke="#27272a" stroke-width="1.4"/>
     <line x1="793.0" y1="332.0" x2="1205.4" y2="332.0" stroke="#1c1c20"/>

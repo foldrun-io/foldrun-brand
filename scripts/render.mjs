@@ -86,14 +86,35 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
   };
 
   // ---------------------------------------------------------- letterbox
+  //
+  // A tree will not fit in 150 or 191 pixels, but a *path* will. The strip
+  // gets the lockup on the left and one line of the same file system on the
+  // right — the running flow, with its run light beside it — so every cover in
+  // the kit says the same thing, at whatever height the platform allows.
   if (!roomy) {
-    const unit = Math.min(box.h / (sub ? 4.8 : 2.6), (box.w * 0.9) / LOCK_UNITS);
-    const subSize = sub ? Math.min(unit * 0.78, (box.w * 0.92) / (sub.length * SANS_EM)) : 0;
+    const unit = Math.min(box.h / (sub ? 4.8 : 2.6), (box.w * 0.55) / LOCK_UNITS);
+    const lockW = unit * LOCK_UNITS;
+    const subSize = sub ? Math.min(unit * 0.78, (box.w * 0.55) / (sub.length * SANS_EM)) : 0;
+
+    const dir = "seo-desk/flows/";
+    const file = "rankings.md";
+    const pathChars = dir.length + file.length;
+    const wide = box.w - lockW - box.w * 0.08;
+    const pathType = Math.min(unit * 0.72, wide / (pathChars * MONO_EM + 3));
+    const showPath = pathType > unit * 0.22 && wide > pathChars * MONO_EM * pathType;
+
+    const left = cx - box.w / 2;
     const baseline = sub ? cy + unit * 0.3 : cy + unit * 1.9 * 0.36;
+    const pathRight = left + box.w;
+    const pathBase = cy + pathType * 0.36;
+    const dotR = pathType * 0.26;
+
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   ${ground}
-  ${lockup(cx - (unit * LOCK_UNITS) / 2, baseline, unit)}
-  ${sub ? `<text x="${cx}" y="${(baseline + subSize * 2.1).toFixed(1)}" text-anchor="middle" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${sub}</text>` : ""}
+  ${lockup(left, baseline, unit)}
+  ${sub ? `<text x="${left.toFixed(1)}" y="${(baseline + subSize * 2.1).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${sub}</text>` : ""}
+  ${showPath ? `<circle cx="${(pathRight - (pathChars * MONO_EM * pathType) - dotR * 3).toFixed(1)}" cy="${(cy - dotR * 0.2).toFixed(1)}" r="${dotR.toFixed(1)}" fill="${GREEN}"/>
+  <text x="${pathRight.toFixed(1)}" y="${pathBase.toFixed(1)}" text-anchor="end" font-family="${MONO}" font-size="${pathType.toFixed(1)}" xml:space="preserve"><tspan fill="#52525b">${dir}</tspan><tspan fill="${GREEN}">${file}</tspan></text>` : ""}
 </svg>`;
   }
 
@@ -154,6 +175,7 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
   ${lockup(left, lockBase, unit)}
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 2.3).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${PAPER}" opacity="0.92">${l1}</text>
   <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 3.8).toFixed(1)}" font-family="${SANS}" font-size="${subSize.toFixed(1)}" fill="${MUTED}">${l2}</text>
+  <text x="${left.toFixed(1)}" y="${(lockBase + subSize * 5.6).toFixed(1)}" font-family="${MONO}" font-size="${(subSize * 0.82).toFixed(1)}" letter-spacing="${(subSize * 0.02).toFixed(2)}" fill="${GREEN}">foldrun.io</text>
   ${panel}
 </svg>`;
 }
