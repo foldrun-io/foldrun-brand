@@ -24,6 +24,9 @@ export interface Cover {
   offsetY?: number;
   /** Nudge it sideways, where a platform's chrome crowds one edge. */
   offsetX?: number;
+  /** Keep this fraction of the width clear on the left, where a platform lays
+   *  its own logo tile over the cover. */
+  reserveLeft?: number;
   /** The line under the wordmark. Empty for the very short strips. */
   sub?: string;
   /** Anything worth knowing before uploading it. */
@@ -39,8 +42,8 @@ export const COVERS: Cover[] = [
   { slug: "x-header", platform: "X", slot: "Header", w: 1500, h: 500, safe: { w: 1290, h: 300 }, offsetY: -34, sub: TAGLINE,
     note: "X drops the avatar over the lower left: the drawing is lifted clear of it." },
 
-  { slug: "linkedin-page-cover", platform: "LinkedIn", slot: "Page cover", w: 1128, h: 191,
-    note: "A letterbox strip — wordmark only, no tagline; it would be unreadable." },
+  { slug: "linkedin-page-cover", platform: "LinkedIn", slot: "Page cover", w: 1128, h: 191, reserveLeft: 0.26,
+    note: "A letterbox strip: wordmark only, no tagline, and the left quarter kept clear because LinkedIn lays the page logo over that corner." },
 
   { slug: "linkedin-personal-cover", platform: "LinkedIn", slot: "Personal background", w: 1584, h: 396, sub: TAGLINE,
     note: "For a person's profile, not the company page." },

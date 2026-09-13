@@ -62,7 +62,7 @@ const LOCK_UNITS = 1.5 + 0.5 + 1.9 * MONO_EM * WORD_CHARS;
  * Trustpilot's 150) get the centred lockup, because a tree at that height is
  * a smudge.
  */
-function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
+function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0, reserveLeft = 0 }) {
   // The safe area is what a platform promises to show; the drawing sits inside
   // it with a little air, because art flush to the edge of the safe box looks
   // clipped even when it is not.
@@ -93,20 +93,32 @@ function coverSvg({ w, h, safe, sub, offsetY = 0, offsetX = 0 }) {
   // right — the running flow, with its run light beside it — so every cover in
   // the kit says the same thing, at whatever height the platform allows.
   if (!roomy) {
-    const unit = Math.min(box.h / (sub ? 4.8 : 2.6), (box.w * 0.55) / LOCK_UNITS);
+    // Whatever a platform covers with its own chrome is not ours to draw in.
+    const reserve = box.w * reserveLeft;
+    const usable = box.w - reserve;
+    const unit = Math.min(box.h / (sub ? 4.8 : 2.6), (usable * 0.62) / LOCK_UNITS);
     const lockW = unit * LOCK_UNITS;
-    const subSize = sub ? Math.min(unit * 0.78, (box.w * 0.55) / (sub.length * SANS_EM)) : 0;
+    const subSize = sub ? Math.min(unit * 0.78, (usable * 0.62) / (sub.length * SANS_EM)) : 0;
 
-    const dir = "seo-desk/flows/";
-    const file = "rankings.md";
+    // The full path if it fits, a shorter one if it does not: a strip where a
+    // platform has already taken a quarter of the width cannot carry
+    // "seo-desk/flows/rankings.md" at a size anyone can read.
+    const wide = usable - lockW - box.w * 0.08;
+    const options = [
+      { dir: "seo-desk/flows/", file: "rankings.md" },
+      { dir: "flows/", file: "rankings.md" },
+      { dir: "", file: "rankings.md" },
+    ];
+    const floor = Math.max(unit * 0.38, 12);
+    const pick = options.find((o) => wide / ((o.dir.length + o.file.length) * MONO_EM + 3) >= floor) ?? options[options.length - 1];
+    const { dir, file } = pick;
     const pathChars = dir.length + file.length;
-    const wide = box.w - lockW - box.w * 0.08;
-    const pathType = Math.min(unit * 0.72, wide / (pathChars * MONO_EM + 3));
-    const showPath = pathType > unit * 0.22 && wide > pathChars * MONO_EM * pathType;
+    const pathType = Math.min(unit * 0.62, wide / (pathChars * MONO_EM + 3));
+    const showPath = pathType >= floor * 0.9;
 
-    const left = cx - box.w / 2;
+    const left = cx - box.w / 2 + reserve;
     const baseline = sub ? cy + unit * 0.3 : cy + unit * 1.9 * 0.36;
-    const pathRight = left + box.w;
+    const pathRight = left + usable;
     const pathBase = cy + pathType * 0.36;
     const dotR = pathType * 0.26;
 
