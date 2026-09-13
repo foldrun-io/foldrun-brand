@@ -58,43 +58,107 @@ const html = `<!doctype html>
   * { box-sizing: border-box; }
   body {
     margin: 0; background: #fff; color: #18181b;
-    font: 11pt/1.65 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 10.5pt/1.7 "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  .sheet { position: relative; width: 210mm; height: 297mm; padding: 24mm 22mm 26mm; }
-  header { display: flex; align-items: flex-start; justify-content: space-between; }
-  .rule { height: 2px; background: ${GREEN}; width: 38mm; margin: 7mm 0 0; }
-  .body { margin-top: 14mm; color: #3f3f46; }
-  .body p { margin: 0 0 4mm; }
+
+  /* A4 with a wide left margin: the text sits on one measure, and the space
+     to its right is where the eye rests. A letter that fills the page corner
+     to corner reads as a form. */
+  .sheet { position: relative; width: 210mm; height: 297mm; padding: 22mm 24mm 24mm; page-break-after: always; }
+  .sheet:last-child { page-break-after: auto; }
+
+  /* The one flash of colour: a hairline across the very top edge. It survives
+     a photocopier as a grey line and costs nothing to print. */
+  .edge { position: absolute; top: 0; left: 0; right: 0; height: 3.2mm; background: ${GREEN}; }
+
+  header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16mm; padding-top: 8mm; }
+  .contact { text-align: right; font-size: 8pt; line-height: 1.75; color: #71717a; letter-spacing: 0.02em; }
+  .contact .em { color: #18181b; }
+  .contact .label { display: block; font-size: 6.6pt; letter-spacing: 0.14em; text-transform: uppercase; color: #a1a1aa; margin-bottom: 1mm; }
+
+  .meta { margin-top: 18mm; display: flex; gap: 18mm; font-size: 9pt; }
+  .meta .block { max-width: 72mm; }
+  .meta .label { display: block; font-size: 6.6pt; letter-spacing: 0.14em; text-transform: uppercase; color: #a1a1aa; margin-bottom: 2mm; }
+
+  .body { margin-top: 16mm; max-width: 135mm; }
+  .body p { margin: 0 0 4.5mm; }
+  .salutation { margin-bottom: 6mm; }
+  .sign { margin-top: 14mm; }
+  .sign .rule { width: 52mm; height: 1px; background: #d4d4d8; margin: 16mm 0 2.5mm; }
+  .sign .who { font-size: 9pt; color: #52525b; line-height: 1.5; }
   .placeholder { color: #a1a1aa; }
+
   footer {
-    position: absolute; left: 22mm; right: 22mm; bottom: 14mm;
-    border-top: 1px solid #e4e4e7; padding-top: 4mm;
-    font-size: 8.5pt; letter-spacing: 0.01em; color: #71717a;
-    display: flex; justify-content: space-between; gap: 8mm;
+    position: absolute; left: 24mm; right: 24mm; bottom: 13mm;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm;
+    font-size: 7.6pt; letter-spacing: 0.02em; color: #a1a1aa;
   }
-  footer .mail { color: #18181b; }
+  footer .legal { max-width: 120mm; }
+  footer .page { font-variant-numeric: tabular-nums; }
+
+  /* Page two onward: the mark only, small, so a two-page letter still looks
+     like it came from somewhere. */
+  .cont { display: flex; justify-content: space-between; align-items: center; padding-top: 8mm; border-bottom: 1px solid #f4f4f5; padding-bottom: 5mm; }
+  .cont .ref { font-size: 8pt; color: #a1a1aa; }
 </style>
+
 <div class="sheet">
+  <span class="edge"></span>
+
   <header>
-    ${lockup(34)}
-    <div style="text-align:right;font-size:8.5pt;color:#71717a;line-height:1.5">
-      <div class="placeholder">[Date]</div>
+    ${lockup(30)}
+    <div class="contact">
+      <span class="label">foldrun</span>
+      <span class="placeholder">${CONTACT.address}</span><br>
+      <span class="placeholder">${CONTACT.phone}</span><br>
+      <span class="em">${CONTACT.email}</span><br>
+      ${CONTACT.site}
     </div>
   </header>
-  <div class="rule"></div>
+
+  <div class="meta">
+    <div class="block">
+      <span class="label">To</span>
+      <span class="placeholder">[Recipient name]<br>[Company]<br>[Street]<br>[Suburb, State, Postcode]</span>
+    </div>
+    <div class="block">
+      <span class="label">Date</span>
+      <span class="placeholder">[Date]</span>
+    </div>
+    <div class="block">
+      <span class="label">Re</span>
+      <span class="placeholder">[Subject]</span>
+    </div>
+  </div>
 
   <div class="body">
-    <p class="placeholder">[Recipient name]<br>[Recipient address]</p>
-    <p style="margin-top:10mm">Dear <span class="placeholder">[Name]</span>,</p>
-    <p class="placeholder">[Your letter goes here.]</p>
-    <p style="margin-top:10mm">Kind regards,</p>
-    <p class="placeholder" style="margin-top:12mm">[Name]<br>foldrun</p>
+    <p class="salutation">Dear <span class="placeholder">[Name]</span>,</p>
+    <p class="placeholder">[Your letter goes here. Keep it to one page where you can — a second page is provided, and rarely needed.]</p>
+    <div class="sign">
+      <p>Kind regards,</p>
+      <div class="rule"></div>
+      <div class="who"><span class="placeholder">[Name]</span><br><span class="placeholder">[Title]</span> · foldrun</div>
+    </div>
   </div>
 
   <footer>
-    <span>${CONTACT.address}  ·  ${CONTACT.phone}</span>
-    <span><span class="mail">${CONTACT.email}</span>  ·  ${CONTACT.site}</span>
+    <span class="legal"><span class="placeholder">[Registered name]</span> · <span class="placeholder">[ABN]</span> · ${CONTACT.site}</span>
+    <span class="page">1</span>
+  </footer>
+</div>
+
+<div class="sheet">
+  <div class="cont">
+    ${lockup(18)}
+    <span class="ref"><span class="placeholder">[Recipient]</span> · <span class="placeholder">[Date]</span></span>
+  </div>
+  <div class="body" style="margin-top:12mm">
+    <p class="placeholder">[Continued.]</p>
+  </div>
+  <footer>
+    <span class="legal"><span class="placeholder">[Registered name]</span> · <span class="placeholder">[ABN]</span> · ${CONTACT.site}</span>
+    <span class="page">2</span>
   </footer>
 </div>`;
 
@@ -172,7 +236,11 @@ const files = {
 
   "word/header1.xml": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:hdr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
-<w:p><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">
+<w:tbl>
+<w:tblPr><w:tblW w:w="5000" w:type="pct"/><w:tblBorders/><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr>
+<w:tblGrid><w:gridCol w:w="5000"/><w:gridCol w:w="4412"/></w:tblGrid>
+<w:tr><w:tc><w:tcPr><w:tcW w:w="53" w:type="pct"/></w:tcPr>
+<w:p><w:pPr><w:spacing w:after="0"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0">
 <wp:extent cx="${logoW}" cy="${logoH}"/><wp:docPr id="1" name="foldrun"/>
 <a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
 <pic:pic><pic:nvPicPr><pic:cNvPr id="1" name="lockup.png"/><pic:cNvPicPr/></pic:nvPicPr>
@@ -180,22 +248,35 @@ const files = {
 <pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${logoW}" cy="${logoH}"/></a:xfrm>
 <a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>
 </pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>
-<w:p><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="12" w:space="1" w:color="10B981"/></w:pBdr><w:spacing w:after="240"/></w:pPr></w:p>
+</w:tc>
+<w:tc><w:tcPr><w:tcW w:w="47" w:type="pct"/></w:tcPr>
+<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr><w:r><w:rPr><w:sz w:val="12"/><w:color w:val="A1A1AA"/><w:caps/><w:spacing w:val="30"/></w:rPr><w:t>foldrun</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr><w:r><w:rPr><w:sz w:val="15"/><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">${x(CONTACT.address)}</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr><w:r><w:rPr><w:sz w:val="15"/><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">${x(CONTACT.phone)}</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr><w:r><w:rPr><w:sz w:val="15"/><w:color w:val="18181B"/></w:rPr><w:t xml:space="preserve">${x(CONTACT.email)}</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr><w:r><w:rPr><w:sz w:val="15"/><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">${x(CONTACT.site)}</w:t></w:r></w:p>
+</w:tc></w:tr>
+</w:tbl>
+<w:p><w:pPr><w:spacing w:after="360"/></w:pPr></w:p>
 </w:hdr>`,
 
   "word/footer1.xml": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:ftr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
 <w:p><w:pPr><w:pBdr><w:top w:val="single" w:sz="4" w:space="4" w:color="E4E4E7"/></w:pBdr>
 <w:jc w:val="center"/></w:pPr>
-<w:r><w:rPr><w:sz w:val="16"/><w:color w:val="71717A"/></w:rPr><w:t xml:space="preserve">${x(footerLine)}</w:t></w:r></w:p>
+<w:r><w:rPr><w:sz w:val="14"/><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">[Registered name] · [ABN] · ${x(CONTACT.site)}</w:t></w:r></w:p>
 </w:ftr>`,
 
   "word/document.xml": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
 <w:body>
-<w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Date]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="13"/><w:caps/><w:spacing w:val="30"/><w:color w:val="A1A1AA"/></w:rPr><w:t>To</w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Recipient name]</w:t></w:r></w:p>
-<w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Recipient address]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Company]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Street, Suburb, State, Postcode]</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="13"/><w:caps/><w:spacing w:val="30"/><w:color w:val="A1A1AA"/></w:rPr><w:t>Date</w:t></w:r><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">  [Date]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="13"/><w:caps/><w:spacing w:val="30"/><w:color w:val="A1A1AA"/></w:rPr><w:t>Re</w:t></w:r><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t xml:space="preserve">  [Subject]</w:t></w:r></w:p>
 <w:p/>
 <w:p><w:r><w:t xml:space="preserve">Dear </w:t></w:r><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Name]</w:t></w:r><w:r><w:t>,</w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:color w:val="A1A1AA"/></w:rPr><w:t>[Your letter goes here.]</w:t></w:r></w:p>

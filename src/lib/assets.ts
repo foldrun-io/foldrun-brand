@@ -19,8 +19,10 @@ export interface Cover {
   slot: string;
   w: number;
   h: number;
-  /** Visible-on-every-device box, centred. Defaults to the whole canvas. */
+  /** Visible-on-every-device box, centred. Defaults to the canvas less a margin. */
   safe?: { w: number; h: number };
+  /** Lift the drawing, where a platform lays something over a corner. */
+  offsetY?: number;
   /** The line under the wordmark. Empty for the very short strips. */
   sub?: string;
   /** Anything worth knowing before uploading it. */
@@ -32,8 +34,8 @@ export const TAGLINE = "Agents are just folders. Write them, run them, deploy th
 export const COVERS: Cover[] = [
   { slug: "youtube-banner", platform: "YouTube", slot: "Channel banner", w: 2560, h: 1440, safe: { w: 1546, h: 423 }, sub: TAGLINE,
     note: "Only the middle 1546×423 shows on every device — TVs see the whole 2560×1440." },
-  { slug: "x-header", platform: "X", slot: "Header", w: 1500, h: 500, sub: TAGLINE,
-    note: "The avatar sits over the lower left; the lockup is kept clear of it." },
+  { slug: "x-header", platform: "X", slot: "Header", w: 1500, h: 500, safe: { w: 1290, h: 300 }, offsetY: -34, sub: TAGLINE,
+    note: "X drops the avatar over the lower left: the drawing is lifted clear of it." },
   { slug: "linkedin-cover", platform: "LinkedIn", slot: "Page cover", w: 1128, h: 191,
     note: "A letterbox strip — wordmark only, no tagline; it would be unreadable." },
   { slug: "facebook-cover", platform: "Facebook", slot: "Page cover", w: 1640, h: 856, safe: { w: 820, h: 312 }, sub: TAGLINE,

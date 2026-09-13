@@ -3,7 +3,7 @@
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M48 0H0v48" fill="none" stroke="#18181b" stroke-width="1"/>
     </pattern>
-    <radialGradient id="glow" cx="50%" cy="0%" r="75%">
+    <radialGradient id="glow" cx="24%" cy="0%" r="75%">
       <stop offset="0%" stop-color="#10b981" stop-opacity="0.20"/>
       <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
     </radialGradient>
@@ -11,10 +11,38 @@
   <rect width="1640" height="856" fill="#09090b"/>
   <rect width="1640" height="856" fill="url(#grid)"/>
   <rect width="1640" height="856" fill="url(#glow)"/>
-  <g transform="translate(516.1 380.4) scale(3.4167)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(410.0 352.3) scale(2.7083)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <text x="625.4" y="444.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="103.9" font-weight="600" letter-spacing="-2.08" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
-  <text x="820" y="496.9" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="25.0" fill="#a1a1aa">Agents are just folders. Write them, run them, deploy them.</text>
+  <text x="496.7" y="403.0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="82.3" font-weight="600" letter-spacing="-1.65" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
+  <text x="410.0" y="464.4" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="26.7" fill="#fafafa" opacity="0.92">Agents are just folders.</text>
+  <text x="410.0" y="504.5" font-family="-apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="26.7" fill="#a1a1aa">Write them, run them, deploy them.</text>
+  <g>
+    <rect x="848.7" y="331.3" width="381.3" height="193.4" rx="10.6" fill="#0d0d10" stroke="#27272a" stroke-width="1.0"/>
+    <g>
+      
+      <circle cx="869.0" cy="355.5" r="4.8" fill="#3f3f46"/>
+      <text x="881.6" y="361.4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">research</text>
+      
+    </g>
+    <g>
+      <line x1="869.0" y1="379.6" x2="1209.7" y2="379.6" stroke="#1c1c20" stroke-width="1"/>
+      <circle cx="869.0" cy="403.8" r="4.8" fill="#3f3f46"/>
+      <text x="881.6" y="409.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">draft</text>
+      
+    </g>
+    <g>
+      <line x1="869.0" y1="428.0" x2="1209.7" y2="428.0" stroke="#1c1c20" stroke-width="1"/>
+      <circle cx="869.0" cy="452.2" r="4.8" fill="#10b981"/>
+      <text x="881.6" y="458.1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#10b981">approve</text>
+      <text x="1209.7" y="457.4" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12.2" fill="#10b981" opacity="0.8">waits for you</text>
+    </g>
+    <g>
+      <line x1="869.0" y1="476.4" x2="1209.7" y2="476.4" stroke="#1c1c20" stroke-width="1"/>
+      <circle cx="869.0" cy="500.5" r="4.8" fill="#3f3f46"/>
+      <text x="881.6" y="506.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16.4" fill="#d4d4d8">publish</text>
+      
+    </g>
+  </g>
 </svg>

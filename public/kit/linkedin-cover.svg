@@ -11,10 +11,10 @@
   <rect width="1128" height="191" fill="#09090b"/>
   <rect width="1128" height="191" fill="url(#grid)"/>
   <rect width="1128" height="191" fill="url(#glow)"/>
-  <g transform="translate(251.7 68.2) scale(3.5110)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(332.9 75.3) scale(2.5982)" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
     <path d="M3 11h18"/>
   </g>
-  <text x="364.0" y="133.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="106.7" font-weight="600" letter-spacing="-2.13" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
+  <text x="416.0" y="123.9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="79.0" font-weight="600" letter-spacing="-1.58" fill="#fafafa">foldrun<tspan fill="#10b981">.</tspan></text>
   
 </svg>
